@@ -63,8 +63,8 @@ function init()
 	document.body.appendChild( container );
     // CAMERA
 	camera = new THREE.PerspectiveCamera(  fov, window.innerWidth / window.innerHeight, 1, 10000);
-	camera.position.set(15,5,0);
-	 camera.lookAt(scene.position);
+	camera.position.set(0,12,17);
+	 camera.lookAt(new THREE.Vector3(0,200,0));
 	
 	// RENDERER
 	renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
@@ -84,14 +84,21 @@ function init()
     
 	// CONTROLS
 	controls = new THREE.OrbitControls( camera );
-	
+	controls.target = new THREE.Vector3(0, 8, 0);
+	controls.maxDistance = 25;
+	controls.minDistance = 15;
+
+
 	
 	loader.setTexturePath("js/wheel/");
 	//var floor = THREE.ImageUtils.loadTexture('js/ac/floor.jpg');
 	//lights
 	loader.load('js/ac/air.js', function (geometry) {
-	var material = new THREE.MeshPhongMaterial();
+	var material = new THREE.MeshStandardMaterial();
 	material.map = air;
+	material.metalness=0.4;
+	material.roughness=0.7;
+	//material.shininess=10;
 	geometry.faceVertexUvs[1] = geometry.faceVertexUvs[0];
 	ac_mesh = new THREE.Mesh( geometry, material );
 	scene.add(ac_mesh);		
@@ -115,40 +122,32 @@ function init()
 		
 	window.addEventListener('resize', resize, false);
 	
-	var plight = new THREE.SpotLight( 0xffffff, 0.7);
+	var plight = new THREE.SpotLight( 0xffffff, 0.8);
 	plight.position.set( 0, 100, 500 );
 	plight.castShadow = true;
 	scene.add( plight );
 	
-	var p2light = new THREE.SpotLight( 0xffffff, 0.7);
+	var p2light = new THREE.SpotLight( 0xffffff, 0.8);
 	p2light.position.set( 500, 100, 0 );
 	p2light.castShadow = true;
 	scene.add( p2light );
 	
-	var p3light = new THREE.SpotLight( 0xffffff, 0.7);
+	var p3light = new THREE.SpotLight( 0xffffff, 0.8);
 	p3light.position.set( -500, 100, 0 );
 	p3light.castShadow = true;
 	scene.add( p3light );
 
-	var p4light = new THREE.SpotLight( 0xffffff, 0.7);
+	var p4light = new THREE.SpotLight( 0xffffff, 0.8);
 	p4light.position.set( 0, 100, -500 );
 	p4light.castShadow = true;
 	scene.add( p4light );
 	
-	var p5light = new THREE.SpotLight( 0xffffff, 0.5);
-	p5light.position.set( 0, 500, 0 );
+	var p5light = new THREE.SpotLight( 0xf0f0f0, 0.5);
+	p5light.position.set( 10, 500, 0 );
 	p5light.castShadow = true;
 	scene.add( p5light );
 	
 	
-	var axisHelper = new THREE.AxisHelper( 20); 
-	scene.add( axisHelper );
-	
-	hemiLight = new THREE.HemisphereLight( 0xf0f0f0, 0xf0f0f0, 0.3 ); 
-	//scene.add(hemiLight)
-	
-	ambientLight = new THREE.AmbientLight( 0x404040,0.5 );
-	//	scene.add( ambientLight );
 
 	    
 }
