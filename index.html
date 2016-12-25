@@ -5,9 +5,19 @@
     <title>Buildcorner team</title>
     <style>
         body {
-            padding:0;
-				margin:0;
-				overflow:hidden;
+            position: absolute;
+			  top: 0;
+			  left: 0;
+			  right: 0;
+			  bottom: 0;
+			  background-image: url("https://s24.postimg.org/eaxjgbprp/image.png");
+			  background-position: center center;
+			background-repeat:  no-repeat;
+			background-attachment: fixed;
+			background-size:  cover;
+				
+            margin: 0px;
+            overflow: hidden;
         }
 
         canvas {
@@ -71,7 +81,7 @@ function init()
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	container.appendChild( renderer.domElement );
-	renderer.setClearColor(0xaabbff, 1);
+	//renderer.setClearColor(0xaabbff, 1);
 	//renderer.gammaInput = true;
 	//renderer.gammaOutput = true;
 	//renderer.setClearColor(0xaabbff,1);
