@@ -96,7 +96,7 @@ function init()
 	controls = new THREE.OrbitControls( camera );
 	controls.target = new THREE.Vector3(0, 8, 0);
 	controls.maxDistance = 25;
-	controls.minDistance = 15;
+	controls.minDistance = 10;
 
 
 	
@@ -107,7 +107,7 @@ function init()
 	var material = new THREE.MeshStandardMaterial();
 	material.map = air;
 	material.metalness=0.4;
-	material.roughness=0.7;
+	material.roughness=0.8;
 	//material.shininess=10;
 	geometry.faceVertexUvs[1] = geometry.faceVertexUvs[0];
 	ac_mesh = new THREE.Mesh( geometry, material );
